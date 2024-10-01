@@ -8,17 +8,26 @@ def render_main():
 
 @app.route("/response")
 def render_response():
-    color = request.args['color'] 
-    #The request object stores information about the request sent to the server.
-    #args is an ImmutableMultiDict (like a dictionary but can have mutliple values for the same key and can't be changed)
-    #The information in args is visible in the url for the page being requested. ex. .../response?color=blue
-    if color == 'pink':
-        reply1 = "That's my favorite color, too!"
-    else:
-        reply1 = "My favorite color is pink."
-    n = int(request.args['multNum']) #values in request.args are strings by default
-    reply2 = "2 x " + str(n) + " = " + str((2*n))
-    return render_template('response.html', response1 = reply1, response2 = reply2)
+    m = request.args['ques1']
+    b = request.args['sellist1']
+    c = request.args['sellist2']
+    if b=='Action' and c=='New':
+        reply3="The Movie For You Is Borderlands, " +m +"!"
+    if b=='Action' and c=='Old':
+        reply3="The Movie For You Is Point Break, " +m +"!"
+    if b=='Adventure' and c=='Old':
+        reply3="The Movie For You Is Treasure Island, "+ m+"!"
+    if b=='Adventure' and c=='New':
+        reply3="The Movie For You Is The New Indiana Jones, "+ m+"!"
+    if b=='Horror' and c=='Old':
+        reply3="The Movie For You Is Alien, "+ m+"!"
+    if b=='Horror' and c=='New':
+        reply3="The Movie For You Is Alien, "+ m+"!"
+    if b=='Sci-fi' and c=='Old':
+        reply3="The Movie For You Is Alien, "+ m+"!"
+    if b=='Sci-fi' and c=='New':
+        reply3="The Movie For You Is Alien, "+ m+"!"    
+    return render_template('response.html', response3=reply3)
     
 if __name__=="__main__":
-    app.run(debug=False)
+    app.run(debug=True)
